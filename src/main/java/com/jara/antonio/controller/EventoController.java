@@ -30,7 +30,7 @@ public class EventoController {
     public ResponseEntity<List<Evento>> getEventos() {
         return ResponseEntity.ok(eventoService.readAll());
     }
-    
+
     @PostMapping
     public ResponseEntity<?> postEvento(@Valid @RequestBody Evento evento) {
         Evento nuevoEvento = eventoService.create(evento);
@@ -39,9 +39,9 @@ public class EventoController {
         }
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error al crear nuevo evento");
     }
-    
+
     @GetMapping("{id}")
-    public ResponseEntity<?> getEventoReadById(@PathVariable Integer id){
+    public ResponseEntity<?> getEventoReadById(@PathVariable Integer id) {
         Evento evento = eventoService.readById(id);
         if (evento != null) {
             return ResponseEntity.ok(evento);
@@ -50,32 +50,31 @@ public class EventoController {
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<?> putEvento(@PathVariable Integer id, @Valid @RequestBody Evento evento){
+    public ResponseEntity<?> putEvento(@PathVariable Integer id, @Valid @RequestBody Evento evento) {
         Evento eventoActualizado = eventoService.eventoUpdate(id, evento);
         if (eventoActualizado != null) {
             return ResponseEntity.ok(eventoActualizado);
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Evento no encontrado");
     }
-    
+
     @DeleteMapping("eliminar/{id}")
-    public ResponseEntity<?> deleteEvento(@PathVariable Integer id){
+    public ResponseEntity<?> deleteEvento(@PathVariable Integer id) {
         boolean eliminado = eventoService.delete(id);
-        if (eliminado){
+        if (eliminado) {
             return ResponseEntity.noContent().build();
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Evento no encontrado");
     }
 
-    //operacion de transformación
+    // operacion de transformación
     @GetMapping("tipo/{tipo}")
     public ResponseEntity<?> getEventosByType(@PathVariable String tipo) {
         List<Evento> filtrados = eventoService.readByType(tipo);
-        if (!filtrados.isEmpty()){
+        if (!filtrados.isEmpty()) {
             return ResponseEntity.ok(filtrados);
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No hay eventos de ese tipo :(");
     }
-    
-    
+
 }

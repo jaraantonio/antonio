@@ -1,4 +1,5 @@
 package com.jara.antonio.repository;
+
 import com.jara.antonio.model.Evento;
 import org.springframework.stereotype.Repository;
 
@@ -7,7 +8,7 @@ import java.util.List;
 
 @Repository
 public class EventoRepository {
-    private List<Evento> listaEventos = new ArrayList <>();
+    private List<Evento> listaEventos = new ArrayList<>();
 
     public List<Evento> obtenerEventos() {
         return listaEventos;
@@ -18,7 +19,7 @@ public class EventoRepository {
         return evento;
     }
 
-    public Evento obtenerPorId(int id){
+    public Evento obtenerPorId(int id) {
         for (Evento evento : listaEventos) {
             if (evento.getId() == id) {
                 return evento;
@@ -29,7 +30,7 @@ public class EventoRepository {
 
     public Evento actualizar(Integer id, Evento evento) {
         Evento buscado = obtenerPorId(id);
-        if (buscado != null){
+        if (buscado != null) {
             buscado.setNombre(evento.getNombre());
             buscado.setTipo(evento.getTipo());
             buscado.setFecha(evento.getFecha());
@@ -40,7 +41,7 @@ public class EventoRepository {
         return null;
     }
 
-    public boolean eliminar(Integer id){
+    public boolean eliminar(Integer id) {
         return listaEventos.removeIf(e -> e.getId().equals(id));
     }
 
@@ -54,4 +55,4 @@ public class EventoRepository {
         }
         return filtrados;
     }
-}  
+}
