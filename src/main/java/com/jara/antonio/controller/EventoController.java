@@ -1,5 +1,5 @@
 package com.jara.antonio.controller;
 
-public class Controller {
-    
+public class EventoController {
+
 }
