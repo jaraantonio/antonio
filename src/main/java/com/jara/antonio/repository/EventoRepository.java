@@ -35,6 +35,7 @@ public class EventoRepository {
             buscado.setFecha(evento.getFecha());
             buscado.setUbicacion(evento.getUbicacion());
             buscado.setCapacidad(evento.getCapacidad());
+            return buscado;
         }
         return null;
     }

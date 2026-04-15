@@ -18,6 +18,9 @@ public class EventoService {
     }
     
     public Evento create(Evento evento){
+        if (eventoRepository.obtenerPorId(evento.getId()) != null) {
+        throw new RuntimeException("El ID " + evento.getId() + " ya está en uso.");
+        }
         return eventoRepository.guardarEvento(evento);
     }
     
@@ -28,7 +31,6 @@ public class EventoService {
     public Evento eventoUpdate(Integer id, Evento evento){
         return eventoRepository.actualizar(id, evento);
     }
-
     
     public boolean delete(Integer id){
         return eventoRepository.eliminar(id);
